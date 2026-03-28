@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Application TrackerDocument</title>
+    <title>Job Application Tracker</title>
 
     <!-- Tailwind + Daisy UI -->
 
@@ -33,59 +33,166 @@
 
 </head>
 
-<body class="container mx-auto py-16 px-8 space-y-16 bg-base-200/50">
+<body class="mx-auto py-16 px-8 space-y-16 bg-base-200/50">
+
     <header class="space-y-5">
         <h2 class="text-[32px] font-bold text-[#002c5c]">Job Application Tracker</h2>
         <div class="grid grid-cols-3 gap-4">
             <div class="bg-white rounded-lg p-5 shadow-sm">
                 <p class="text-[#323b49] text-[14px]">Total</p>
-                <h2 class="font-bold text-2xl text[#002c5c]">8</h2>
+                <h2 class="font-bold text-2xl text[#002c5c]"><span id="all-job-count">0</span></h2>
             </div>
             <div class="bg-white rounded-lg p-5 shadow-sm">
                 <p class="text-[#323b49] text-[14px]">Interview</p>
-                <h2 class="font-bold text-2xl text-[#10b981]">0</h2>
+                <h2 class="font-bold text-2xl text-[#10b981]"><span id="interview-job-count">0</span></h2>
             </div>
             <div class="bg-white rounded-lg p-5 shadow-sm">
                 <p class="text-[#323b49] text-[14px]">Rejected</p>
-                <h2 class="font-bold text-2xl text-[#ef4444]">0</h2>
+                <h2 class="font-bold text-2xl text-[#ef4444]"><span id="rejected-job-count">0</span></h2>
             </div>
         </div>
     </header>
-
-    <main>
-        <section id="All-job-section">
+    <div id="top-sect">
+        <div class="flex justify-between">
             <h3 class="text-xl font-semibold text-[#002c5c] mb-6">Available Jobs</h3>
-            <div class="three-buttons space-x-2">
-                <button class="btn btn-soft btn-secondary rounded h-8 w-20 py-2">All</button>
-                <button class="btn btn-soft btn-primary rounded h-8 w-20 py-2">Interview</button>
-                <button class="btn btn-soft btn-error rounded h-8 w-20 py-2">Rejected</button>
-            </div>
-            <div>
-                <div id="mobile-corp" class="p-6 my-4 bg-white rounded-lg shadow-sm relative">
-                    <h3 class="text-[#002c5c] font-semibold text-[18px] mb-1 ">Mobile First Corp</h3>
-                    <button class="btn btn-outline absolute rounded-full right-[24px] top-[34px]">
-                        <i class="fa-solid fa-trash-can"></i>
+            <p class="font-bold text-neutral/60"><span id="available-jobs">8</span> Jobs</p>
+        </div>
+        <div class="three-buttons space-x-2 mb-4">
+            <button id="tab-all" onclick="switchTab('all')"
+                class="btn btn-outline btn-secondary rounded h-8 w-20 py-2">All</button>
+            <button id="tab-interview" onclick="switchTab('interview')"
+                class="btn btn-outline btn-primary rounded h-8 w-20 py-2">Interview</button>
+            <button id="tab-rejected" onclick="switchTab('rejected')"
+                class="btn btn-outline btn-error rounded h-8 w-20 py-2">Rejected</button>
+        </div>
+    </div>
 
-                    </button>
-                    <p class="text-[#64748b] text-base mb-5">React Native Developer</p>
-                    <p class="text-[#64748b] tenxt-[14px] mb-5">
-                        Remote • Full-time • $130,000 - $175,000
-                    </p>
-                    <button class="badge-ghost rounded-[4px] px-3 py-2 text-[#002c5c] font-medium mb-2">NOT
-                        APPLIED</button>
-                    <p class="text-[#323b49] tenxt-[14px] mb-5">
-                        Build cross-platform mobile applications using React Native. Work on products used by millions
-                        of
-                        users worldwide.
-                    </p>
-                    <div class="flex gap-2">
-                        <button class="btn rounded-[4px] btn-primary btn-outline">INTERVIEW</button>
-                        <button class="btn rounded-[4px] btn-error btn-outline">REJECTED</button>
-                    </div>
+
+    <div id="job-container">
+
+        <section id="all-sect" class="hidden">
+
+            <div class="job-card p-6 my-4 bg-white rounded-lg shadow-sm relative">
+                <h3 class="text-[#002c5c] font-semibold text-[18px] mb-1 ">Mobile First Corp</h3>
+                <button class="delete btn btn-outline absolute rounded-full right-[24px] top-[34px]">
+                    <i class="fa-solid fa-trash-can pointer-events-none"></i>
+
+                </button>
+                <p class="text-[#64748b] text-base mb-5">React Native Developer</p>
+                <p class="text-[#64748b] tenxt-[14px] mb-5">
+                    Remote • Full-time • $130,000 - $175,000
+                </p>
+                <button
+                    class="status badge h-8 w-32 flex justify-center items-center rounded-[4px] px-3 py-2 text-[#002c5c] font-medium mb-2">NOT
+                    APPLIED</button>
+                <p class="text-[#323b49] tenxt-[14px] mb-5">
+                    Build cross-platform mobile applications using React Native. Work on products used by millions
+                    of
+                    users worldwide.
+                </p>
+                <div class="flex gap-2">
+                    <button class="interview btn rounded-[4px] btn-primary btn-outline">INTERVIEW</button>
+                    <button class="rejected btn rounded-[4px] btn-error btn-outline">REJECTED</button>
                 </div>
             </div>
+
+
+            <div class="job-card p-6 my-4 bg-white rounded-lg shadow-sm relative">
+                <h3 class="text-[#002c5c] font-semibold text-[18px] mb-1 ">WebFlow Agency</h3>
+                <button class="delete btn btn-outline absolute rounded-full right-[24px] top-[34px]">
+                    <i class="fa-solid fa-trash-can pointer-events-none"></i>
+
+                </button>
+                <p class="text-[#64748b] text-base mb-5">Web Designer & Developer</p>
+                <p class="text-[#64748b] tenxt-[14px] mb-5">
+                    Los Angeles, CA • Part-time • $80,000 - $120,000
+                </p>
+                <button
+                    class="status badge h-8 w-32 flex justify-center items-center rounded-[4px] px-3 py-2 text-[#002c5c] font-medium mb-2">NOT
+                    APPLIED</button>
+                <p class="text-[#323b49] tenxt-[14px] mb-5">
+                    Create stunning web experiences for high-profile clients. Must have portfolio and experience
+                    with
+                    modern web design trends.
+                </p>
+                <div class="flex gap-2">
+                    <button class="interview btn rounded-[4px] btn-primary btn-outline">INTERVIEW</button>
+                    <button class="rejected btn rounded-[4px] btn-error btn-outline">REJECTED</button>
+                </div>
+            </div>
+
+
+            <div class="job-card p-6 my-4 bg-white rounded-lg shadow-sm relative">
+                <h3 class="text-[#002c5c] font-semibold text-[18px] mb-1 ">DataViz Solutions</h3>
+                <button class="delete btn btn-outline absolute rounded-full right-[24px] top-[34px]">
+                    <i class="fa-solid fa-trash-can pointer-events-none"></i>
+
+                </button>
+                <p class="text-[#64748b] text-base mb-5">Data Visualization Specialist</p>
+                <p class="text-[#64748b] tenxt-[14px] mb-5">
+                    Boston, MA • Full-time • $125,000 - $165,000
+                </p>
+                <button
+                    class="status badge h-8 w-32 flex justify-center items-center rounded-[4px] px-3 py-2 text-[#002c5c] font-medium mb-2">NOT
+                    APPLIED</button>
+                <p class="text-[#323b49] tenxt-[14px] mb-5">
+                    Transform complex data into compelling visualizations. Required skills: D3.js, React, and strong
+                    analytical thinking.
+                </p>
+                <div class="flex gap-2">
+                    <button class="interview btn rounded-[4px] btn-primary btn-outline">INTERVIEW</button>
+                    <button class="rejected btn rounded-[4px] btn-error btn-outline">REJECTED</button>
+                </div>
+            </div>
+
+            <div class="job-card p-6 my-4 bg-white rounded-lg shadow-sm relative">
+                <h3 class="text-[#002c5c] font-semibold text-[18px] mb-1 ">DataViz Solutions</h3>
+                <button class="delete btn btn-outline absolute rounded-full right-[24px] top-[34px]">
+                    <i class="fa-solid fa-trash-can pointer-events-none"></i>
+
+                </button>
+                <p class="text-[#64748b] text-base mb-5">Data Visualization Specialist</p>
+                <p class="text-[#64748b] tenxt-[14px] mb-5">
+                    Boston, MA • Full-time • $125,000 - $165,000
+                </p>
+                <button
+                    class="status badge h-8 w-32 flex justify-center items-center rounded-[4px] px-3 py-2 text-[#002c5c] font-medium mb-2">NOT
+                    APPLIED</button>
+                <p class="text-[#323b49] tenxt-[14px] mb-5">
+                    Transform complex data into compelling visualizations. Required skills: D3.js, React, and strong
+                    analytical thinking.
+                </p>
+                <div class="flex gap-2">
+                    <button class="interview btn rounded-[4px] btn-primary btn-outline">INTERVIEW</button>
+                    <button class="rejected btn rounded-[4px] btn-error btn-outline">REJECTED</button>
+                </div>
+            </div>
+
         </section>
-    </main>
+
+        <section id="interview-sect" class="hidden">
+
+        </section>
+
+        <section id="rejected-sect" class="hidden">
+
+        </section>
+
+    </div>
+
+
+    <div id="empty-state" class="hidden">
+        <div class=" rounded-lg bg-white h-[400px] flex flex-col text-center items-center justify-center">
+            <div class="w-[100px]">
+                <img src="assets/jobs.png" alt="">
+            </div>
+            <h2 class="text-[#002c5c] mt-5 mb-1 text-2xl font-semibold">No jobs available</h2>
+            <p class="text-[#64748b]">Check back soon for new job opportunities</p>
+        </div>
+    </div>
+
+
+    <script src="scripts/index.js"></script>
 
 </body>
 
