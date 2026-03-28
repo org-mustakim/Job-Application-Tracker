@@ -37,7 +37,7 @@
 
     <header class="space-y-5">
         <h2 class="text-[32px] font-bold text-[#002c5c]">Job Application Tracker</h2>
-        <div class="grid grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-3  gap-4">
             <div class="bg-white rounded-lg p-5 shadow-sm">
                 <p class="text-[#323b49] text-[14px]">Total</p>
                 <h2 class="font-bold text-2xl text[#002c5c]"><span id="all-job-count">0</span></h2>
@@ -57,7 +57,7 @@
             <h3 class="text-xl font-semibold text-[#002c5c] mb-6">Available Jobs</h3>
             <p class="font-bold text-neutral/60"><span id="available-jobs">8</span> Jobs</p>
         </div>
-        <div class="three-buttons space-x-2 mb-4">
+        <div class="three-buttons flex flex-wrap space-x-2 mb-4">
             <button id="tab-all" onclick="switchTab('all')"
                 class="btn btn-outline btn-secondary rounded h-8 w-20 py-2">All</button>
             <button id="tab-interview" onclick="switchTab('interview')"
